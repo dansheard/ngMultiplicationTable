@@ -1,9 +1,9 @@
 angular.module('myApp', [])
-  .controller('MultiplicationCtrl', function($scope, $attrs) {
+.controller('MultiplicationCtrl', function($scope, $attrs) {
     function populateNumbers(x) {
         var numbers = [];
         for(var i=0; i<x; i++) {
-            numbers[i] = i + 1;
+            numbers[i] = i + 1; 
         };
         return numbers;
     }
@@ -17,11 +17,19 @@ angular.module('myApp', [])
     });
 
     $scope.numberLimit = $attrs.initialNumberLimit || 10;
-  });
 
+    var activeFactorA, activeFactorB;
+    $scope.setActiveFactors = function(a, b) {
+        activeFactorA = a;
+        activeFactorB = b;
+    };
 
+    $scope.clearActiveFactors = function() {
+    	activeFactorA = activeFactorB = null;
+    };
 
-
-
-
+    $scope.matchesFactor = function (a, b) {
+        return a === activeFactorA || b === activeFactorB;
+    };
+});
 
